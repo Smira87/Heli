@@ -18,7 +18,20 @@ public class SoundHandler : MonoBehaviour
         starts = mysounds[0];
         works = mysounds[1];
         
+        StartCoroutine(Sound());
+        
+
     }
+     IEnumerator Sound()
+    {
+        yield return new WaitForSeconds(0.01f);
+        PlayStarts();
+        yield return new WaitForSeconds(4f);
+        StopStarts();
+        PlayWorks();  
+
+    }
+
 
     public void PlayStarts()
     {

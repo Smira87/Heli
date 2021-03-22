@@ -18,6 +18,8 @@ public class HeliController : MonoBehaviour
     public  GameObject _Drone;
     public  GameObject _Model;
 
+    public SoundHandler sh;
+
     //public float torque = 0.02f;
      
 
@@ -34,11 +36,17 @@ public class HeliController : MonoBehaviour
 
         rb = _Drone.GetComponent<Rigidbody>();
         view = _Drone.GetComponent<PhotonView>();
+        sh = _Drone.GetComponent<SoundHandler>();
+        
+        
+        
 
     }
+  
     public void Works() {
         
         anim.SetBool("IsWorking", true);
+        
         
         //rb.AddForce(rb.transform.right/100f);
     }
@@ -56,9 +64,13 @@ public class HeliController : MonoBehaviour
         {
             Move();
             Tilting();
+            Works();
+            
         }
 
     }
+
+     
  
     public void Move() {
 

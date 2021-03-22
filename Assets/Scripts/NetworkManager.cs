@@ -9,15 +9,24 @@ public class NetworkManager : MonoBehaviour
      public Text TextInfos;
      public Transform SpawnPoint1;
      public Transform SpawnPoint2;
+     public GameObject[] players;
+     
+    
+     
     // Start is called before the first frame update
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings("v01");
+
+        
+        
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        
+        
         if (PhotonNetwork.connectionStateDetailed.ToString() != "Joined")
         {
             TextInfos.text = PhotonNetwork.connectionStateDetailed.ToString();
@@ -43,22 +52,28 @@ public class NetworkManager : MonoBehaviour
 
     void OnJoinedRoom()
     {
+        
+        
         if (PhotonNetwork.playerList.Length > 1)
         {
             StartCoroutine(SpawnMyPlayer());
+            
+            
         }
         else
         {
             StartCoroutine(SpawnMyPlayer2());
         }
-
+        
+      //  StartCoroutine(ActivateSound());
+        
         
     }
 
     IEnumerator SpawnMyPlayer()
     {
         yield return new WaitForSeconds(1);
-        GameObject MyPlayer = PhotonNetwork.Instantiate("Heli", SpawnPoint1.position, Quaternion.identity, 0) as GameObject;
+        GameObject MyPlayer = PhotonNetwork.Instantiate("Heli", SpawnPoint1.position, Quaternion.identity, 0) as GameObject;  
 
     }
 
@@ -66,6 +81,13 @@ public class NetworkManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         GameObject MyPlayer = PhotonNetwork.Instantiate("Heli", SpawnPoint2.position, Quaternion.identity, 0) as GameObject;
-
+        
     }
+
+   // IEnumerator ActivateSound()
+  // {
+   //     yield return new WaitForSeconds(1);
+   //     players = GameObject.FindGameObjectsWithTag("Player");
+        
+   // }
 }
