@@ -9,7 +9,7 @@ public class NetworkManager : MonoBehaviour
      public Text TextInfos;
      public Transform SpawnPoint1;
      public Transform SpawnPoint2;
-     public GameObject[] players;
+     
      
     
      

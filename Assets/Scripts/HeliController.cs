@@ -58,13 +58,13 @@ public class HeliController : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        
+        Works();
         
         if (view.isMine)
         {
             Move();
             Tilting();
-            Works();
+            
             
         }
 
