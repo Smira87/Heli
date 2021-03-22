@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class HeliController : MonoBehaviour
 {
-    Rigidbody rb;
+    public PhotonView view;
+    public Rigidbody rb;
     public Animator anim;
     public Joystick joystick;
     public Joystick joystick2;
@@ -12,6 +13,7 @@ public class HeliController : MonoBehaviour
     Vector3 m_EulerAngleVelocity;
     Vector3 m_EulerAngleVelocity2;
     
+    public float x;
 
     public  GameObject _Drone;
     public  GameObject _Model;
@@ -23,8 +25,15 @@ public class HeliController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = _Drone.GetComponent<Rigidbody>();
 
+        GameObject gJoystick1 = GameObject.Find("Joystick1");
+        GameObject gJoystick2 = GameObject.Find("Joystick2");
+
+        joystick = gJoystick1.GetComponent<Joystick>(); 
+        joystick2 = gJoystick2.GetComponent<Joystick>(); 
+
+        rb = _Drone.GetComponent<Rigidbody>();
+        view = _Drone.GetComponent<PhotonView>();
 
     }
     public void Works() {
@@ -39,20 +48,37 @@ public class HeliController : MonoBehaviour
         
     }
     // Update is called once per frame
-  
+    public void Update()
+    {
+        
+        
+        if (view.isMine)
+        {
+            Move();
+            Tilting();
+        }
+
+    }
  
     public void Move() {
+
     
+        
         Vector3 moveDirection = transform.right * joystick2.Vertical + transform.forward * (-joystick2.Horizontal) + transform.up * joystick.Vertical;
 
         rb.AddForce(moveDirection * MoveSpd * Time.deltaTime, ForceMode.VelocityChange);        
 
         m_EulerAngleVelocity = new Vector3(0, joystick.Horizontal * 100f, 0);
+        
         Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity * Time.deltaTime);
         
         
         rb.MoveRotation(rb.rotation * deltaRotation);
         
+
+        
+    
+
         
     }
 
