@@ -59,11 +59,12 @@ public class HeliController : MonoBehaviour
     public void Update()
     {
         Works();
-        Tilting();
+        
         
         if (view.isMine)
         {
             Move();  
+            Tilting();
         }
 
     }
