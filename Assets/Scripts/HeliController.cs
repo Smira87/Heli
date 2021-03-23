@@ -61,11 +61,12 @@ public class HeliController : MonoBehaviour
 
         
         
-        Tilting();
+        
         
         if (view.isMine)
         {  
             Move();
+            Tilting();
         }
 
     }
