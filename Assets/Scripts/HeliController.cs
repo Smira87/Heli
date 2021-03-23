@@ -38,7 +38,7 @@ public class HeliController : MonoBehaviour
         view = _Drone.GetComponent<PhotonView>();
         sh = _Drone.GetComponent<SoundHandler>();
         
-        
+        Works();
         
 
     }
@@ -60,7 +60,7 @@ public class HeliController : MonoBehaviour
     {
 
         
-        Works();
+        
         Tilting();
         
         if (view.isMine)
