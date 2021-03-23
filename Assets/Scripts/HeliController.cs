@@ -56,16 +56,16 @@ public class HeliController : MonoBehaviour
         
     }
     // Update is called once per frame
-    public void Update()
+    public void FixedUpdate()
     {
+
+        
         Works();
         Tilting();
         
-
         if (view.isMine)
         {  
             Move();
-            
         }
 
     }
@@ -100,14 +100,18 @@ public class HeliController : MonoBehaviour
     {
         var localVel = transform.InverseTransformDirection(rb.velocity);
 
-        float angleZ = -20 * localVel.x * 60.0f * Time.deltaTime;
-        float angleX = -20 * -localVel.z * 60.0f * Time.deltaTime;
+        float angleZ = -15 * localVel.x * 60.0f * Time.deltaTime;
+        float angleX = -15 * -localVel.z * 60.0f * Time.deltaTime;
 
         Vector3 rotation = _Model.transform.localRotation.eulerAngles;
 
         _Model.transform.localRotation = Quaternion.Euler(angleX, rotation.y, angleZ);
 
+       
+
     }
+
+    
 
   
     
