@@ -65,7 +65,7 @@ public class HeliController : MonoBehaviour
             Move();
         }
         
-        Tilting();       }
+        Tilting();       
 
     }
 
@@ -96,7 +96,7 @@ public class HeliController : MonoBehaviour
     
     
         public void Tilting()
-    {
+       {
         var localVel = transform.InverseTransformDirection(rb.velocity);
 
         float angleZ = -15 * localVel.x * 60.0f * Time.deltaTime;
@@ -106,14 +106,7 @@ public class HeliController : MonoBehaviour
 
         _Model.transform.localRotation = Quaternion.Euler(angleX, rotation.y, angleZ);
 
-       
+       }
 
-    }
-
-    
-
-  
-    
-    
-
+ 
 }
