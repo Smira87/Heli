@@ -19,13 +19,13 @@ public class HeliShootScript : MonoBehaviour
     void Start()
     {
         view = GetComponent<PhotonView>();
-        GameObject rightFireButton = GameObject.Find("RightFireButton");
-        GameObject leftFireButton = GameObject.Find("LeftFireButton");
+        GameObject rightFireButton = GameObject.Find("RightFire");
+        GameObject leftFireButton = GameObject.Find("LeftFire");
         rightFire = rightFireButton.GetComponent<Button>(); 
         leftFire = leftFireButton.GetComponent<Button>(); 
         rightFire.onClick.AddListener(FireLeft);
         leftFire.onClick.AddListener(FireRight);
-        
+
     }
  void FireLeft()
     {
@@ -43,10 +43,6 @@ void FireRight()
     }
     
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     [PunRPC]
     void shootBullet(Vector3 Pos, Quaternion quaat)
